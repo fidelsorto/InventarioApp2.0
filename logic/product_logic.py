@@ -1,11 +1,11 @@
 from core.pyba_logic import PybaLogic
 
 
-class ProductLogic(PybaLogic):
+class PrductLogic(PybaLogic):
     def __init__(self):
         super().__init__()
 
-    def insertProduct(self, sku, productName, quantity, price, size, color, category , photo):
+    def insertProduct(self, sku, product_name, quantity, price, size, color, category , photo):
         database = self.createDatabaseObj()
         sql = (
             "INSERT INTO `kardex`.`products` "
@@ -19,7 +19,7 @@ class ProductLogic(PybaLogic):
     def obtainQuantity(self, id):
         database = self.createDatabaseObj()
         sql = (
-            "SELECT Quantity "
+            "SELECT quantity "
             + f"FROM kardex.products where id_product = '{id}';"
         )
         result = database.executeQuery(sql)
