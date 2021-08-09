@@ -5,24 +5,42 @@ class ProductLogic(PybaLogic):
     def __init__(self):
         super().__init__()
 
-    def insertProduct(self, Sku, ProductName, Quantity, Price, Talla, Color, Category , foto):
+    def insertProduct(self, sku, productName, quantity, price, size, color, category , photo):
         database = self.createDatabaseObj()
         sql = (
-            "INSERT INTO `kardex`.`Products` "
-            + "(`id_Product`,`Sku`,`ProductName`,`Quantity`,`Price`,`Talla`,`color`,`Category`,`foto`) "
-            + f"VALUES(0,'{Sku}','{ProductName}','{Quantity}','{Price}','{Talla}','{Color}','{Category}','{foto}');"
+            "INSERT INTO `kardex`.`products` "
+            + "(`id_Product`,`sku`,`productName`,`quantity`,`price`,`size`,`color`,`category`,`photo`) "
+            + f"VALUES(0,'{sku}','{productName}','{quantity}','{price}','{size}','{color}','{category}','{photo}');"
         )
         rows = database.executeNonQueryRows(sql)
         return rows
 
-    def getClientByEmail(self, clientEmail):
+    
+    def obtainQuantity(self, id):
         database = self.createDatabaseObj()
         sql = (
-            "SELECT name, email, password, salt "
-            + f"FROM panpanbd.clients where email like '{clientEmail}';"
+            "SELECT Quantity "
+            + f"FROM kardex.products where id_product = '{id}';"
         )
         result = database.executeQuery(sql)
         if len(result) > 0:
             return result[0]
         else:
             return []
+
+    def updateProduct(self, id, quantity):
+        database = self.createDatabaseObj()
+        actual = self.obtainQuantity(id)
+        sql = (
+            "UPDATE `kardex`.`products` "
+            + f"set Quantity = {actual + quantity}"
+            )
+        rows = database.executeNonQueryRows(sql)
+        return rows
+
+    def deleteProduct(self, id):
+        database = self.createDatabaseObj()
+        sql = (
+            "DELETE FROM kardex.products"
+            + f"where id_product = {id}"
+        )
