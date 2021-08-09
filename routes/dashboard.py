@@ -2,6 +2,7 @@ from flask import session, render_template, redirect
 
 class DashboardRoutes():
     @staticmethod
+
     def configure_routes(app):
 
         @app.route("/dashboard")

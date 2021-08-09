@@ -1,16 +1,16 @@
 from core.pyba_logic import PybaLogic
 
 
-class ClientLogic(PybaLogic):
+class ProductLogic(PybaLogic):
     def __init__(self):
         super().__init__()
 
-    def insertClient(self, clientName, clientEmail, clientCel, password, salt):
+    def insertProduct(self, Sku, ProductName, Quantity, Price, Talla, Color, Category , foto):
         database = self.createDatabaseObj()
         sql = (
-            "INSERT INTO `panpanbd`.`clients` "
-            + "(`id_client`,`email`,`cel`,`name`,`password`,`salt`) "
-            + f"VALUES(0,'{clientEmail}','{clientCel}','{clientName}','{password}','{salt}');"
+            "INSERT INTO `kardex`.`Products` "
+            + "(`id_Product`,`Sku`,`ProductName`,`Quantity`,`Price`,`Talla`,`color`,`Category`,`foto`) "
+            + f"VALUES(0,'{Sku}','{ProductName}','{Quantity}','{Price}','{Talla}','{Color}','{Category}','{foto}');"
         )
         rows = database.executeNonQueryRows(sql)
         return rows
