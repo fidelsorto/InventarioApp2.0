@@ -1,6 +1,5 @@
 from flask import request, render_template, redirect, session, flash
 from logic.admin_logic import AdminLogic
-
 class LogRoutes():
     @staticmethod
     def configure_routes(app):
@@ -12,8 +11,8 @@ class LogRoutes():
             elif request.method == "POST":
                 user = request.form["user"]
                 passwd = request.form["passwd"]
-                logic = AdminLogic()
-                adminDict =  logic.getValidateAdmin(user, passwd)
+                Alogic = AdminLogic()
+                adminDict =  Alogic.getValidateAdmin(user, passwd)
 
                 if adminDict == []:
                     return render_template("login.html")
