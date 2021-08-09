@@ -9,8 +9,8 @@ class ProductLogic(PybaLogic):
         database = self.createDatabaseObj()
         sql = (
             "INSERT INTO `kardex`.`products` "
-            + "(`id_Product`,`sku`,`productName`,`quantity`,`price`,`size`,`color`,`category`,`photo`) "
-            + f"VALUES(0,'{sku}','{productName}','{quantity}','{price}','{size}','{color}','{category}','{photo}');"
+            + "(`id_product`,`sku`,`product_name`,`quantity`,`price`,`size`,`color`,`category`,`photo`) "
+            + f"VALUES(0,'{sku}','{product_name}','{quantity}','{price}','{size}','{color}','{category}','{photo}');"
         )
         rows = database.executeNonQueryRows(sql)
         return rows
@@ -33,7 +33,7 @@ class ProductLogic(PybaLogic):
         actual = self.obtainQuantity(id)
         sql = (
             "UPDATE `kardex`.`products` "
-            + f"set Quantity = {actual + quantity}"
+            + f"set quantity = {actual + quantity}"
             )
         rows = database.executeNonQueryRows(sql)
         return rows

@@ -1,7 +1,7 @@
 from flask import request, render_template, redirect, session, flash
 from logic.admin_logic import AdminLogic
 
-class LogProcessRoutes():
+class LogRoutes():
     @staticmethod
     def configure_routes(app):
 
