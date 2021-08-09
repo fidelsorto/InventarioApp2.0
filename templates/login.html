@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PanPan - Log In</title>
+</head>
+
+<body>
+    <h1>Log In</h1>
+
+    <!-- Pondremos acá mensajes ya sea si da error o si el usuario justo está ingresando Pondremos
+    primera vez a la página -->
+    
+    <form action="{{ url_for('login') }}" method="post">
+        <label for="user">User:</label><br>
+        <input type="text" name="user" id="user">
+        <br><br>
+
+        <label for="passwd">Password:</label><br>
+        <input type="password" name="passwd" id="passwd">
+        <br><br>
+        
+        <input type="submit" value="Log in">
+    </form>
+</body>
+
+</html>
