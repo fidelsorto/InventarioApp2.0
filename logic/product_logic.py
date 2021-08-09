@@ -1,11 +1,10 @@
 from core.pyba_logic import PybaLogic
 
-
-class PrductLogic(PybaLogic):
+class ProdLogic(PybaLogic):
     def __init__(self):
         super().__init__()
 
-    def insertProduct(self, sku, product_name, quantity, price, size, color, category , photo):
+    def insertProduct(self, sku, product_name, quantity, price, size, color, category, photo):
         database = self.createDatabaseObj()
         sql = (
             "INSERT INTO `kardex`.`products` "
@@ -32,8 +31,8 @@ class PrductLogic(PybaLogic):
         database = self.createDatabaseObj()
         actual = self.obtainQuantity(id)
         sql = (
-            "UPDATE `kardex`.`products` "
-            + f"set quantity = {actual + quantity}"
+            "UPDATE `kardex`.`products`"
+            + f"set quantity = '{actual + quantity}'"
             )
         rows = database.executeNonQueryRows(sql)
         return rows
@@ -42,5 +41,7 @@ class PrductLogic(PybaLogic):
         database = self.createDatabaseObj()
         sql = (
             "DELETE FROM kardex.products"
-            + f"where id_product = {id}"
+            + f"where id_product = '{id}'"
         )
+        rows = database.executeNonQueryRows(sql)
+        return rows
