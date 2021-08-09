@@ -1,6 +1,5 @@
 from core.pyba_logic import PybaLogic
 
-
 class ProdLogic(PybaLogic):
     def __init__(self):
         super().__init__()
@@ -46,6 +45,3 @@ class ProdLogic(PybaLogic):
         )
         rows = database.executeNonQueryRows(sql)
         return rows
-
-prod = ProdLogic()
-prod.insertProduct(1001,"d", 3,7,10,"blue","man")
